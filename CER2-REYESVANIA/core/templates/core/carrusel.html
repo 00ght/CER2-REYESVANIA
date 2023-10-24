@@ -1,0 +1,35 @@
+{%load static%}
+<div class="row">
+  <div class="row d-none d-xxl-block">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active bg-dark" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2" class="bg-dark"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3" class="bg-dark"></button>
+      </div>
+      <div class="carousel-inner">
+        {%for comunicado in comunicados%}
+        {%if comunicado.visible == True%}
+        <div class="carousel-item active">
+            <div class="card">
+              <div class="card-body" style="height: 40rem; padding: 3rem;">
+                <h1 class="card-title">{{comunicado.titulo}}</h1>
+                <h2 class="card-subtitle mb-2 text-muted p-1">{{comunicado.entidad}}</h2>
+                <h3 class="card-text p-2">{{comunicado.detalle}}</h3>
+              </div>
+            </div>
+        </div>
+        {%endif%}
+        {%endfor%}
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title> Comunicados | {{ title }} </title>
+    <link rel="stylesheet" href="{% static 'core/css/bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'core/css/estilos.css' %}"/>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-3 col-xxl-2 text-center mt-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="currentColor" class="bi bi-image" viewBox="0 1 16 16">
+                <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path>
+                <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"></path>
+              </svg>
+            </div>
+            <div class="col-xl-9 col-xxl-8 justify-content-center d-none d-sm-block mt-5">
+                <h1>Sistema Integrado de Notificaciones</h1>
+                <br> <hr> <br>
+            </div>
+            <div class="col-xxl-2 text-center mt-4 d-none d-xxl-block">
+              <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="currentColor" class="bi bi-image" viewBox="0 1 16 16">
+                <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path>
+                <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"></path>
+              </svg>
+            </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xl-2 d-none d-xl-block d-xxl-none bg-light"></div>
+            <div class="col-xl-8 d-none d-xl-block d-xxl-none bg-light">
+                <nav id="navbar">
+                  <ul class="nav">
+                    <li>
+                      <li class="nav-item">
+                        <a class="nav-link" style="color: black" href="#">Inicio</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" style="color: black" href="admin/">Administración</a>
+                      </li>
+                    </li>
+                  </ul>
+                </nav>
+            </div> <br>
+          <div class="col-xl-2 d-none d-sm-block d-xxl-none bg-light"></div>
+        </div>
+
+        <div class="row d-xxl-none">
+          <div class="col-xl-2 col-1"></div>
+          <div class="col-xl-3 col-10"> <br>
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Departamento</option>
+              {%for entidad in entidades%}
+                <option value="entidades.id" selected>{{entidad.nombre}}</option>
+              {%endfor%}
+            </select>
+          </div>
+        </div>
+        
+
+        <div class="row d-xxl-none align-items-center justify-content-center">
+          <div class="row row-cols-1 row-cols-md-3 g-4 align-items-center justify-content-center h-100">
+            {%for comunicado in comunicados%}
+            {%if comunicado.visible == True%}
+            <div class="col-xl-3">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">{{comunicado.titulo}}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{comunicado.entidad}}</h6>
+                  <p class="card-text">{{comunicado.detalle_corto}}</p>
+                </div>
+              </div>
+            </div>
+            {%endif%}
+            {%endfor%}
+          </div>
+        </div>
+
+        {%include 'core/carrusel.html'%}
+        
+
+    </div>
+  <script src="{% static 'core/js/bootstrap.js' %}"></script>
+</body>
+</html>
